@@ -11,6 +11,9 @@ export default function TodoList({
   initialTodos: eachTodo[];
 }) {
   const { todos, isLoading } = useTodo(initialTodos);
+  console.log("todos from useTodo hook in -- TODOLIST.tsx", todos);
+
+  console.log("todos from zustand store", todos);
 
   if (isLoading)
     return (
