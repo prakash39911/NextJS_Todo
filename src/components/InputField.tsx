@@ -14,6 +14,7 @@ function InputField() {
   const router = useRouter();
 
   const add = useTodoStore((state) => state.add);
+  const todos = useTodoStore((state) => state.todos);
 
   const {
     register,
@@ -33,10 +34,14 @@ function InputField() {
   const onActualSubmit = async (data: inputSchemaType) => {
     await addTodo(data);
     const allTodo = await getAllTodo();
+    console.log("fetched data from server getAllTodo", allTodo);
+
     reset();
     add(allTodo);
-    router.refresh();
+    console.log("todos from state", todos);
+
     toast.success("Todo Added Successfully");
+    router.refresh();
   };
 
   return (
