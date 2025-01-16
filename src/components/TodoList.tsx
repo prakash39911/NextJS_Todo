@@ -28,7 +28,7 @@ export default function TodoList({
           </div>
         ))
       ) : (
-        <div className="flex justify-center text-2xl font-semibold text-gray-400">
+        <div className="flex justify-center text-4xl font-semibold text-gray-700">
           Add Todo to Continue
         </div>
       )}

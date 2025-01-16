@@ -25,7 +25,7 @@ export default function EachTodo({ todo }: { todo: eachTodo }) {
     setIsDeleting(false);
     const data = await getAllTodo();
     add(data);
-    toast.success("Todo Deleted");
+    toast.success("Todo Deleted Successfully");
   };
 
   const handleEdit = async (todoId: number) => {

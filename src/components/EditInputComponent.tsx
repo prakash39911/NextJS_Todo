@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 function EditInputComponent({
   todoId,
@@ -38,6 +39,7 @@ function EditInputComponent({
   const onActualSubmit = async (data: inputSchemaType) => {
     const result = await updateTodoById(stringToNumberTodoId, data.text);
     if (result) router.push("/");
+    toast.success("Todo Updated Successfully");
   };
 
   return (
