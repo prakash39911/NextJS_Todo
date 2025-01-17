@@ -1,17 +1,29 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import EachTodo from "./EachTodo";
 import { useTodo } from "@/hook/useTodo";
 import Loading from "@/app/Loading";
+import { getAllTodo } from "@/app/action/todoAction";
+import useTodoStore from "@/hook/useTodoStore";
 
 export default function TodoList({
   initialTodos,
 }: {
   initialTodos: eachTodo[];
 }) {
+  const add = useTodoStore((state) => state.add);
+
+  useEffect(() => {
+    const fetchTodos = async () => {
+      const updatedTodos = await getAllTodo();
+      add(updatedTodos);
+    };
+
+    fetchTodos();
+  }, [add]);
+
   const { todos, isLoading } = useTodo(initialTodos);
-  console.log("todos from useTodo hook", todos);
 
   if (isLoading)
     return (

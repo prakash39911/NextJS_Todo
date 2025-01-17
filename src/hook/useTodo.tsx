@@ -8,11 +8,10 @@ export const useTodo = (initialTodos: eachTodo[]) => {
   const add = useTodoStore((state) => state.add);
 
   useEffect(() => {
-    if (!todos || todos.length === 0) {
-      add(initialTodos);
-    }
+    add(initialTodos);
+
     setIsLoading(false);
-  }, [add, initialTodos, todos]);
+  }, [add, initialTodos]);
 
   return {
     todos,
