@@ -11,9 +11,7 @@ export default function TodoList({
   initialTodos: eachTodo[];
 }) {
   const { todos, isLoading } = useTodo(initialTodos);
-  console.log("todos from useTodo hook in -- TODOLIST.tsx", todos);
-
-  console.log("todos from zustand store", todos);
+  console.log("todos from useTodo hook", todos);
 
   if (isLoading)
     return (
@@ -24,7 +22,7 @@ export default function TodoList({
 
   return (
     <div>
-      {todos.length > 0 ? (
+      {todos && todos.length > 0 ? (
         todos.map((eachtodo: eachTodo) => (
           <div key={eachtodo.id} className="text-white">
             <EachTodo todo={eachtodo} />

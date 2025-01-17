@@ -1,8 +1,9 @@
 "use client";
 
-import { updateTodoById } from "@/app/action/todoAction";
+import { getAllTodo, updateTodoById } from "@/app/action/todoAction";
 import { inputSchema, inputSchemaType } from "@/app/lib/schemas/inputSchema";
 import Loading from "@/app/Loading";
+import useTodoStore from "@/hook/useTodoStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
@@ -16,6 +17,7 @@ function EditInputComponent({
   todoId: string;
   text: string;
 }) {
+  const add = useTodoStore((state) => state.add);
   const router = useRouter();
   const stringToNumberTodoId = parseInt(todoId);
 
@@ -38,6 +40,8 @@ function EditInputComponent({
 
   const onActualSubmit = async (data: inputSchemaType) => {
     const result = await updateTodoById(stringToNumberTodoId, data.text);
+    const allTodo = await getAllTodo();
+    add(allTodo);
     if (result) router.push("/");
     toast.success("Todo Updated Successfully");
   };
